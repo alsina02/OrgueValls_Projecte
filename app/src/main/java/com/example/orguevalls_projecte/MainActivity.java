@@ -10,10 +10,12 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    // Variable declaration
     private Button bHistoria;
     private Button bQA;
     private Button bOpts;
 
+    // Database handler declaration
     public DBHandler dbh = new DBHandler(this);
 
     @Override
@@ -21,12 +23,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Creates user if it doesn't exists
         dbh.cargarDades();
 
+        // Links button with physical button
         bHistoria = findViewById(R.id.botoHistoria);
         bQA = findViewById(R.id.botoQA);
         bOpts = findViewById(R.id.botoOpts);
 
+        // When bHistoria is clicked, loads History Activity
         bHistoria.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent myIntent = new Intent(MainActivity.this, HistoryActivity.class);
@@ -34,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // When bQA is clicked, loads Questions Activity
         bQA.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent myIntent = new Intent(MainActivity.this, QuestActivity.class);
@@ -41,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // When bOpts is clicked, loads Option Activity
         bOpts.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent myIntent = new Intent(MainActivity.this, OptionActivity.class);

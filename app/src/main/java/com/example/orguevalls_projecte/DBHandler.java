@@ -28,11 +28,13 @@ public class DBHandler extends SQLiteOpenHelper {
 
     }
 
+    // Creates a new user
     private void crearUser(int punt) {
         SQLiteDatabase db = getWritableDatabase();
         crearUsers(db, punt);
     }
 
+    // Sets data to create new user
     private void crearUsers(SQLiteDatabase db, int punt) {
         ContentValues cv = new ContentValues();
         cv.put("encerts", punt);
@@ -41,12 +43,14 @@ public class DBHandler extends SQLiteOpenHelper {
         System.out.println("Usuari creat");
     }
 
+    // Creates a new user if it doesn't exists
     public void cargarDades() {
         if (!hasUser()) {
             crearUser(0);
         }
     }
 
+    // Looks if DB has user or not
     public boolean hasUser() {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -100,6 +104,7 @@ public class DBHandler extends SQLiteOpenHelper {
         }
     }
 
+    // Adds points
     public void afegirEncert() {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -112,6 +117,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    // Adds errors
     public void afegirError() {
         SQLiteDatabase db = this.getWritableDatabase();
 
