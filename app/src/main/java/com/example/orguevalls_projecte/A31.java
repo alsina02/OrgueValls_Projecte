@@ -23,7 +23,7 @@ public class A31 extends AppCompatActivity {
         imgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(A31.this, "gj boy", Toast.LENGTH_LONG).show();
+                Toast.makeText(A31.this, "És correcte, enhorabona", Toast.LENGTH_LONG).show();
             }
         });
 

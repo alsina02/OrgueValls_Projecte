@@ -27,20 +27,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".A22"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".A21"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".A14"
             android:exported="false">
             <meta-data
