@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Orgue de Valls</string>
+    <string name="bHistoria">Història</string>
+    <string name="bQA">Preguntes</string>
+    <string name="bOpts">Preferències</string>
+    <string name="textHist1">Valls havia tingut sempre un orgue.</string>
+    <string name="textHist2">Abans de construir-se l’actual església de Sant Joan n’hi havia una de més petita, la de Santt Miquel. Se sap que aquesta ja tenia un orgue petit.</string>
+    <string name="textHist3">Quan es va construir l’església de Sant Joan va necessitar un orgue més gran que s’adeqüés a les noves mesures de la nau.</string>
+    <string name="textHist4">La construcció del nou orgue es va fer entre els anys 1587 i 1590.</string>
+    <string name="textHist5">Estava situat a la meitat de la nau.</string>
+    <string name="textHist6">Els teclats estaven situats en alçada en una mena de balconada.</string>
+    <string name="textHist7">L’organista hi accedia per una escala situada a l’interior del mur.</string>
+    <string name="textHist8">L’any 1936 va ser destruït i van fondre el metall dels tubs per fer munició per a la guerra civil espanyola. L’últim dia que es va fer sonar va ser el 21 de juliol.</string>
+    <string name="textHist9">Tenia unes portes que es tancàven quan l’orgue no s’utilitzava. Les portes tapaven els tubs de la façana. </string>
+    <string name="textHist10">Molts orgues catalans de l’època tenien portes amb pintures o cortines.</string>
+    <string name="textHist11">Les pintures que es veien a la part de fora, quan les portes estaven tancades, mostràven l’Anunciació de l’àngel a Maria.</string>
+    <string name="textHist12">Les de la part de dins, i que es veien quan les portes estaven obertes, ens mostraven en un cantó el naixement de Jesús i en l’altra la resurrecció.</string>
+    <string name="encerts">Encerts: </string>
+    <string name="errors">Errors: </string>
+    <string name="bRestablsih">Reestablir</string>
+    <string name="confirmacio">Confirmació</string>
+    <string name="estasSegur">Estas segur de voler reestablir les dades de l\'aplicació?</string>
+    <string name="si">Si</string>
+    <string name="cancel">Cancel·lar</string>
+    <string name="enter">enter!</string>
+</resources>
