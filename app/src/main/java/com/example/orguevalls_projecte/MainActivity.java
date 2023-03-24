@@ -3,35 +3,41 @@ package com.example.orguevalls_projecte;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Variable declaration
     private Button bHistoria;
     private Button bQA;
+    private Button bCantates;
     private Button bOpts;
 
-    // Database handler declaration
     public DBHandler dbh = new DBHandler(this);
+
+    MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Creates user if it doesn't exists
         dbh.cargarDades();
 
-        // Links button with physical button
         bHistoria = findViewById(R.id.botoHistoria);
         bQA = findViewById(R.id.botoQA);
         bOpts = findViewById(R.id.botoOpts);
+        bCantates = findViewById(R.id.botoCantates);
 
-        // When bHistoria is clicked, loads History Activity
+        mp = MediaPlayer.create(this, R.raw.lux_aeterna);
+        mp.setLooping(true);
+
+        if (dbh.isMusicaEnabled()) {
+            mp.start();
+        }
+
         bHistoria.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent myIntent = new Intent(MainActivity.this, HistoryActivity.class);
@@ -39,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // When bQA is clicked, loads Questions Activity
         bQA.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent myIntent = new Intent(MainActivity.this, QuestActivity.class);
@@ -47,13 +52,37 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // When bOpts is clicked, loads Option Activity
         bOpts.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent myIntent = new Intent(MainActivity.this, OptionActivity.class);
-                MainActivity.this.startActivity(myIntent);
+                startActivityForResult(myIntent, 1);
             }
         });
 
+        bCantates.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent myIntent = new Intent(MainActivity.this, CantatesActivity.class);
+                MainActivity.this.startActivity(myIntent);
+                mp.pause();
+            }
+        });
+
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        System.out.println("adsfasdfasdf***ASDFSADFAS***ADSFASDFAS***ADSFASF****ASDASF");
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK) {
+                String strEditText = data.getStringExtra("musica");
+
+                switch (strEditText) {
+                    case "true": mp.start();
+                        break;
+                    case "false": mp.pause();
+                        break;
+                }
+            }
+        }
     }
 }

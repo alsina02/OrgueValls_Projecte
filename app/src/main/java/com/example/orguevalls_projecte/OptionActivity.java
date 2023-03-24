@@ -13,12 +13,11 @@ import android.widget.Toast;
 
 public class OptionActivity extends AppCompatActivity {
 
-    // Variable declaration
     private TextView nEncerts;
     private TextView nErrors;
     private Button bRestablsih;
-
-    // Database handler declaration
+    private Button bEnable;
+    private Button bDisable;
     public DBHandler dbh = new DBHandler(this);
 
     @Override
@@ -27,16 +26,23 @@ public class OptionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_options);
         setTitle(R.string.bOpts);
 
-        // Links variables to with physical objects
         nEncerts = findViewById(R.id.textNEncerts);
         nErrors = findViewById(R.id.textNErrors);
         bRestablsih = findViewById(R.id.buttonRestablsih);
+        bEnable = findViewById(R.id.buttonEnableMusica);
+        bDisable = findViewById(R.id.buttonDisableMusica);
 
-        // Sets text to TextViews
         nEncerts.setText(String.valueOf(dbh.getEncerts()));
         nErrors.setText(String.valueOf(dbh.getErrors()));
 
-        // When bRestablsih is clicked, opens new AlertDialog to check if user wants to reestablish data
+        if (dbh.isMusicaEnabled()) {
+            bEnable.setVisibility(View.GONE);
+            bDisable.setVisibility(View.VISIBLE);
+        } else {
+            bDisable.setVisibility(View.GONE);
+            bEnable.setVisibility(View.VISIBLE);
+        }
+
         bRestablsih.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(OptionActivity.this);
@@ -46,7 +52,6 @@ public class OptionActivity extends AppCompatActivity {
                 builder.setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                // When clicked reestablishes data and shows data indicating so
                                 dbh.reestablishData();
                                 if (dbh.getEncerts() == 0 && dbh.getErrors() == 0) {
                                     Toast toast = Toast.makeText(OptionActivity.this, "S'han reestablert les dades! Reinicïi la aplicació!", Toast.LENGTH_LONG);
@@ -65,6 +70,27 @@ public class OptionActivity extends AppCompatActivity {
             }
         });
 
+        bEnable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.putExtra("musica", "true");
+                setResult(RESULT_OK, intent);
+                finish();
+                dbh.enableMusica();
+            }
+        });
+
+        bDisable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.putExtra("musica", "false");
+                setResult(RESULT_OK, intent);
+                finish();
+                dbh.disableMusica();
+            }
+        });
 
     }
 }

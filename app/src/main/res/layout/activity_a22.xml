@@ -4,26 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".A14"
-    android:background="@color/ColorPrincipal">
+    tools:context=".A22">
 
-
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="323dp"
-        android:layout_height="267dp"
-        android:text="Ara ja podeu entrar a la nau i continuar amb la visita.\n\n Durant la visita haureu d’anar-vos fixant si hi ha recordatoris referents a la ciutat tal com hem vist a fora. Quantifiqueu-los i al final del recorregut trieu la resposta correcta.."
-        android:textSize="21sp"
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="163dp"
+        android:layout_marginTop="305dp"
+        android:layout_marginEnd="206dp"
+        android:layout_marginBottom="379dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.445"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.293" />
+        app:srcCompat="@drawable/fila_1_columna_1" />
 
     <Button
-        android:id="@+id/botoA21"
+        android:id="@+id/botoA23"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="enter!"
@@ -34,5 +32,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.947" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

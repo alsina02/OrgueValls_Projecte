@@ -19,7 +19,8 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE user (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "encerts INTEGER NOT NULL," +
-                "errors INTEGER NOT NULL" +
+                "errors INTEGER NOT NULL," +
+                "musica BOOLEAN NOT NULL" +
                 ")");
     }
 
@@ -28,29 +29,26 @@ public class DBHandler extends SQLiteOpenHelper {
 
     }
 
-    // Creates a new user
     private void crearUser(int punt) {
         SQLiteDatabase db = getWritableDatabase();
         crearUsers(db, punt);
     }
 
-    // Sets data to create new user
     private void crearUsers(SQLiteDatabase db, int punt) {
         ContentValues cv = new ContentValues();
         cv.put("encerts", punt);
         cv.put("errors", punt);
+        cv.put("musica", true);
         db.insertOrThrow("user", null, cv);
         System.out.println("Usuari creat");
     }
 
-    // Creates a new user if it doesn't exists
     public void cargarDades() {
         if (!hasUser()) {
             crearUser(0);
         }
     }
 
-    // Looks if DB has user or not
     public boolean hasUser() {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -104,7 +102,6 @@ public class DBHandler extends SQLiteOpenHelper {
         }
     }
 
-    // Adds points
     public void afegirEncert() {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -117,7 +114,6 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    // Adds errors
     public void afegirError() {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -146,5 +142,47 @@ public class DBHandler extends SQLiteOpenHelper {
                 db.update("user", values, "id=1", null);
             } while (cursorCourses.moveToNext());
         }
+    }
+
+    public boolean isMusicaEnabled() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Genera consulta i la guarda en un cursor
+        Cursor cursorCourses = db.rawQuery("SELECT * FROM user", null);
+
+        cursorCourses.moveToFirst();
+        // Mou el curso a la primera posició
+        do {
+            System.out.println("Musica: " + cursorCourses.getInt(1));
+            if (cursorCourses.getInt(3) == 1) {
+                return true;
+            } else {
+                return false;
+            }
+        } while (cursorCourses.moveToNext());
+    }
+
+    public void enableMusica() {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        int p = 1;
+        System.out.println("Musica: " + p);
+        ContentValues values = new ContentValues();
+        values.put("musica", p);
+
+        db.update("user", values, "id=1", null);
+        db.close();
+    }
+
+    public void disableMusica() {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        int p = 0;
+        System.out.println("Musica: " + p);
+        ContentValues values = new ContentValues();
+        values.put("musica", p);
+
+        db.update("user", values, "id=1", null);
+        db.close();
     }
 }
