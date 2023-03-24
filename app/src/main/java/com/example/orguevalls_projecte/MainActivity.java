@@ -71,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        System.out.println("adsfasdfasdf***ASDFSADFAS***ADSFASDFAS***ADSFASF****ASDASF");
         if (requestCode == 1) {
             if(resultCode == RESULT_OK) {
                 String strEditText = data.getStringExtra("musica");
